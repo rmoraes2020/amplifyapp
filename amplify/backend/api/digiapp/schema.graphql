@@ -1,0 +1,9 @@
+type User @model{
+	username: String!
+	firstName: String
+	lastName: String
+	email: String
+	phoneNumber: String
+	createdAt: String
+}
+

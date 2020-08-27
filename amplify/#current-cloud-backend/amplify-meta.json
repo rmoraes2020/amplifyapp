@@ -22,7 +22,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/auth/amplifyapp611acdb3-cloudformation-template.yml",
 				"logicalId": "authamplifyapp611acdb3"
 			},
-			"lastPushTimeStamp": "2020-08-24T21:40:41.702Z",
+			"lastPushTimeStamp": "2020-08-27T18:03:14.440Z",
 			"output": {
 				"AppClientSecret": "140spn2pm5489v966j0p2ui6v0cbgsqca5prmfcc1f6u7o69r28n",
 				"UserPoolId": "us-east-2_SrdQGHOjt",
@@ -35,5 +35,31 @@
 			"lastPushDirHash": "SYpsPhsKzRVH7087iffCK37rEh4="
 		}
 	},
-	"api": {}
+	"api": {
+		"digiapp": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"apiKeyExpirationDays": 365,
+							"description": "digikey"
+						}
+					},
+					"additionalAuthenticationProviders": []
+				},
+				"GraphQLAPIIdOutput": "6lhmo3yj6rdzxiccazj44v5n7i",
+				"GraphQLAPIEndpointOutput": "https://h47uq2ds2jfmhfy25o3pnbc4nq.appsync-api.us-east-2.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-eldn4mupqnhi7bs6ep2nzytfe4"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apidigiapp"
+			},
+			"lastPushTimeStamp": "2020-08-27T18:03:15.808Z",
+			"lastPushDirHash": "dWNGMlMF7HLHETKUjbqyTgDuO2Q="
+		}
+	}
 }
