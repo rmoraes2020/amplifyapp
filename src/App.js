@@ -3,7 +3,7 @@ import './App.css';
 import { API } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
-const initialFormState = {device: '', pass: ''}
+const initialFormState = {sn: '', pass: ''}
 
 function App() {
   return (
@@ -15,10 +15,12 @@ function App() {
 		
         <input
         placeholder="Serial Number"
+		//value={formData.sn}
 		/>
 	  
 		<input
         placeholder="Password"
+		//value={formData.pass}
 		/>
 		
 		<button>Add Device</button>
