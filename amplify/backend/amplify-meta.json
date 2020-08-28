@@ -22,7 +22,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/auth/amplifyapp611acdb3-cloudformation-template.yml",
                 "logicalId": "authamplifyapp611acdb3"
             },
-            "lastPushTimeStamp": "2020-08-27T18:10:13.231Z",
+            "lastPushTimeStamp": "2020-08-28T16:28:15.305Z",
             "output": {
                 "AppClientSecret": "140spn2pm5489v966j0p2ui6v0cbgsqca5prmfcc1f6u7o69r28n",
                 "UserPoolId": "us-east-2_SrdQGHOjt",
@@ -58,7 +58,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/api/cloudformation-template.json",
                 "logicalId": "apidigiapp"
             },
-            "lastPushTimeStamp": "2020-08-27T18:10:13.233Z",
+            "lastPushTimeStamp": "2020-08-28T16:28:15.309Z",
             "lastPushDirHash": "dWNGMlMF7HLHETKUjbqyTgDuO2Q="
         }
     }
