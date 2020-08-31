@@ -21,7 +21,7 @@ function App() {
 
   async function getDeviceButton() {
     if (!formData.sn || !formData.pass) return;
-    const apiData = await API.graphql({ query: GetDevice, variables: { input: formData.sn } });
+    const apiData = await API.graphql({ query: getDevice, variables: { input: formData.sn } });
     console.log(apiData);
   }
 
