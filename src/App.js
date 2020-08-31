@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, graphqlOperation } from 'aws-amplify';
 import {createUser, updateUser, deleteUser, createDevice, updateDevice, deleteDevice} from './graphql/mutations';
-import {getUser, listUser, getDevice, listDevice} from './graphql/queries';
+//import {getUser, listUser, getDevice, listDevice} from './graphql/queries';
+import * as queries from './graphql/queries';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { queries } from '@testing-library/react';
 
