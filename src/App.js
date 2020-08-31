@@ -5,7 +5,7 @@ import {createUser, updateUser, deleteUser, createDevice, updateDevice, deleteDe
 //import {getUser, listUser, getDevice, listDevice} from './graphql/queries';
 import * as queries from './graphql/queries';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { queries } from '@testing-library/react';
+//import { queries } from '@testing-library/react';
 
 const initialFormState = {sn: '', pass: ''}
 
