@@ -9,6 +9,7 @@ export const getUser = /* GraphQL */ `
       lastName
       email
       phoneNumber
+      deviceList
       createdAt
       updatedAt
     }
@@ -27,7 +28,41 @@ export const listUsers = /* GraphQL */ `
         lastName
         email
         phoneNumber
+        deviceList
         createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDevice = /* GraphQL */ `
+  query GetDevice($id: ID!) {
+    getDevice(id: $id) {
+      serialNumber
+      password
+      userList
+      status
+      createdAt
+      dueAt
+      updatedAt
+    }
+  }
+`;
+export const listDevices = /* GraphQL */ `
+  query ListDevices(
+    $filter: ModelDeviceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        serialNumber
+        password
+        userList
+        status
+        createdAt
+        dueAt
         updatedAt
       }
       nextToken

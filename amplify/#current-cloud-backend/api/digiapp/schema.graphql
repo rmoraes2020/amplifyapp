@@ -4,6 +4,15 @@ type User @model{
 	lastName: String
 	email: String
 	phoneNumber: String
+	deviceList: [String]
 	createdAt: String
 }
 
+type Device @model{
+	serialNumber: String!
+	password: String
+	userList: [String]
+	status: String
+	createdAt: String
+	dueAt: String
+}

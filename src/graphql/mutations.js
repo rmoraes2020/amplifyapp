@@ -12,6 +12,7 @@ export const createUser = /* GraphQL */ `
       lastName
       email
       phoneNumber
+      deviceList
       createdAt
       updatedAt
     }
@@ -28,6 +29,7 @@ export const updateUser = /* GraphQL */ `
       lastName
       email
       phoneNumber
+      deviceList
       createdAt
       updatedAt
     }
@@ -44,7 +46,56 @@ export const deleteUser = /* GraphQL */ `
       lastName
       email
       phoneNumber
+      deviceList
       createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDevice = /* GraphQL */ `
+  mutation CreateDevice(
+    $input: CreateDeviceInput!
+    $condition: ModelDeviceConditionInput
+  ) {
+    createDevice(input: $input, condition: $condition) {
+      serialNumber
+      password
+      userList
+      status
+      createdAt
+      dueAt
+      updatedAt
+    }
+  }
+`;
+export const updateDevice = /* GraphQL */ `
+  mutation UpdateDevice(
+    $input: UpdateDeviceInput!
+    $condition: ModelDeviceConditionInput
+  ) {
+    updateDevice(input: $input, condition: $condition) {
+      serialNumber
+      password
+      userList
+      status
+      createdAt
+      dueAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDevice = /* GraphQL */ `
+  mutation DeleteDevice(
+    $input: DeleteDeviceInput!
+    $condition: ModelDeviceConditionInput
+  ) {
+    deleteDevice(input: $input, condition: $condition) {
+      serialNumber
+      password
+      userList
+      status
+      createdAt
+      dueAt
       updatedAt
     }
   }

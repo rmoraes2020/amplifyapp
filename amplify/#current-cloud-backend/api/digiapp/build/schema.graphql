@@ -4,7 +4,18 @@ type User {
   lastName: String
   email: String
   phoneNumber: String
+  deviceList: [String]
   createdAt: String
+  updatedAt: AWSDateTime!
+}
+
+type Device {
+  serialNumber: String!
+  password: String
+  userList: [String]
+  status: String
+  createdAt: String
+  dueAt: String
   updatedAt: AWSDateTime!
 }
 
@@ -97,6 +108,7 @@ input ModelUserFilterInput {
   lastName: ModelStringInput
   email: ModelStringInput
   phoneNumber: ModelStringInput
+  deviceList: ModelStringInput
   createdAt: ModelStringInput
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
@@ -119,6 +131,8 @@ enum ModelAttributeTypes {
 type Query {
   getUser(id: ID!): User
   listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection
+  getDevice(id: ID!): Device
+  listDevices(filter: ModelDeviceFilterInput, limit: Int, nextToken: String): ModelDeviceConnection
 }
 
 input CreateUserInput {
@@ -127,6 +141,7 @@ input CreateUserInput {
   lastName: String
   email: String
   phoneNumber: String
+  deviceList: [String]
   createdAt: String
 }
 
@@ -136,6 +151,7 @@ input UpdateUserInput {
   lastName: String
   email: String
   phoneNumber: String
+  deviceList: [String]
   createdAt: String
 }
 
@@ -147,6 +163,9 @@ type Mutation {
   createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User
   updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User
   deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User
+  createDevice(input: CreateDeviceInput!, condition: ModelDeviceConditionInput): Device
+  updateDevice(input: UpdateDeviceInput!, condition: ModelDeviceConditionInput): Device
+  deleteDevice(input: DeleteDeviceInput!, condition: ModelDeviceConditionInput): Device
 }
 
 input ModelUserConditionInput {
@@ -155,6 +174,7 @@ input ModelUserConditionInput {
   lastName: ModelStringInput
   email: ModelStringInput
   phoneNumber: ModelStringInput
+  deviceList: ModelStringInput
   createdAt: ModelStringInput
   and: [ModelUserConditionInput]
   or: [ModelUserConditionInput]
@@ -165,4 +185,58 @@ type Subscription {
   onCreateUser: User @aws_subscribe(mutations: ["createUser"])
   onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
   onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"])
+  onCreateDevice: Device @aws_subscribe(mutations: ["createDevice"])
+  onUpdateDevice: Device @aws_subscribe(mutations: ["updateDevice"])
+  onDeleteDevice: Device @aws_subscribe(mutations: ["deleteDevice"])
+}
+
+type ModelDeviceConnection {
+  items: [Device]
+  nextToken: String
+}
+
+input ModelDeviceFilterInput {
+  serialNumber: ModelStringInput
+  password: ModelStringInput
+  userList: ModelStringInput
+  status: ModelStringInput
+  createdAt: ModelStringInput
+  dueAt: ModelStringInput
+  and: [ModelDeviceFilterInput]
+  or: [ModelDeviceFilterInput]
+  not: ModelDeviceFilterInput
+}
+
+input CreateDeviceInput {
+  serialNumber: String!
+  password: String
+  userList: [String]
+  status: String
+  createdAt: String
+  dueAt: String
+}
+
+input UpdateDeviceInput {
+  serialNumber: String
+  password: String
+  userList: [String]
+  status: String
+  createdAt: String
+  dueAt: String
+}
+
+input DeleteDeviceInput {
+  id: ID
+}
+
+input ModelDeviceConditionInput {
+  serialNumber: ModelStringInput
+  password: ModelStringInput
+  userList: ModelStringInput
+  status: ModelStringInput
+  createdAt: ModelStringInput
+  dueAt: ModelStringInput
+  and: [ModelDeviceConditionInput]
+  or: [ModelDeviceConditionInput]
+  not: ModelDeviceConditionInput
 }
