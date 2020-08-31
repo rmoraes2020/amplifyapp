@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { API } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import {createUser, updateUser, deleteUser, createDevice, updateDevice, deleteDevice} from './graphql/mutations';
 import {getUser, listUser, getDevice, listDevice} from './graphql/queries';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { queries } from '@testing-library/react';
 
 const initialFormState = {sn: '', pass: ''}
 
@@ -20,8 +21,11 @@ function App() {
   }
 
   async function getDeviceButton() {
-    if (!formData.sn || !formData.pass) return;
-    const apiData = await API.graphql({ query: getDevice, variables: { input: formData.sn } });
+    if (!formData.sn || !formData.pass){
+      console.log("sn or pass is null");
+      return;}
+    //const apiData = await API.graphql({ query: getDevice, variables: { input: formData.sn } });
+    const apiData = await API.graphql(graphqlOperation(queries.getDevice, {id: formData.sn}));
     console.log(apiData);
   }
 
