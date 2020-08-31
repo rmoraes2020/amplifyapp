@@ -25,7 +25,17 @@ function App() {
       console.log("sn or pass is null");
       return;}
     //const apiData = await API.graphql({ query: getDevice, variables: { input: formData.sn } });
+    console.log(formData.sn);
     const apiData = await API.graphql(graphqlOperation(queries.getDevice, {id: formData.sn}));
+    console.log(apiData);
+  }
+
+  async function testFindButton() {
+    if (!formData.sn || !formData.pass){
+      console.log("sn or pass is null");
+      return;}
+    //const apiData = await API.graphql({ query: getDevice, variables: { input: formData.sn } });
+    const apiData = await API.graphql(graphqlOperation(queries.getDevice, {id: 'V1008142'}));
     console.log(apiData);
   }
 
@@ -57,6 +67,8 @@ function App() {
       />
 		
 		  <button onClick={getDeviceButton}>Add Device</button>
+
+      <button onClick={testFindButton}>Test Find</button>
 
       <AmplifySignOut />
     </div>
