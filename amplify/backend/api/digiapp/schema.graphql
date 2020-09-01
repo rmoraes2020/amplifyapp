@@ -1,5 +1,5 @@
 type User @model{
-	username: String!
+	id: String!
 	firstName: String
 	lastName: String
 	email: String
@@ -9,7 +9,7 @@ type User @model{
 }
 
 type Device @model{
-	serialNumber: String!
+	id: String!
 	password: String
 	userList: [String]
 	status: String
