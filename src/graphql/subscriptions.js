@@ -4,7 +4,7 @@
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser {
     onCreateUser {
-      username
+      id
       firstName
       lastName
       email
@@ -18,7 +18,7 @@ export const onCreateUser = /* GraphQL */ `
 export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser {
     onUpdateUser {
-      username
+      id
       firstName
       lastName
       email
@@ -32,7 +32,7 @@ export const onUpdateUser = /* GraphQL */ `
 export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser {
     onDeleteUser {
-      username
+      id
       firstName
       lastName
       email
@@ -46,7 +46,7 @@ export const onDeleteUser = /* GraphQL */ `
 export const onCreateDevice = /* GraphQL */ `
   subscription OnCreateDevice {
     onCreateDevice {
-      serialNumber
+      id
       password
       userList
       status
@@ -59,7 +59,7 @@ export const onCreateDevice = /* GraphQL */ `
 export const onUpdateDevice = /* GraphQL */ `
   subscription OnUpdateDevice {
     onUpdateDevice {
-      serialNumber
+      id
       password
       userList
       status
@@ -72,7 +72,7 @@ export const onUpdateDevice = /* GraphQL */ `
 export const onDeleteDevice = /* GraphQL */ `
   subscription OnDeleteDevice {
     onDeleteDevice {
-      serialNumber
+      id
       password
       userList
       status

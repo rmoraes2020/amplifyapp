@@ -4,7 +4,7 @@
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
-      username
+      id
       firstName
       lastName
       email
@@ -23,7 +23,7 @@ export const listUsers = /* GraphQL */ `
   ) {
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        username
+        id
         firstName
         lastName
         email
@@ -39,7 +39,7 @@ export const listUsers = /* GraphQL */ `
 export const getDevice = /* GraphQL */ `
   query GetDevice($id: ID!) {
     getDevice(id: $id) {
-      serialNumber
+      id
       password
       userList
       status
@@ -57,7 +57,7 @@ export const listDevices = /* GraphQL */ `
   ) {
     listDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        serialNumber
+        id
         password
         userList
         status

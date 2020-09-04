@@ -7,7 +7,7 @@ export const createUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     createUser(input: $input, condition: $condition) {
-      username
+      id
       firstName
       lastName
       email
@@ -24,7 +24,7 @@ export const updateUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     updateUser(input: $input, condition: $condition) {
-      username
+      id
       firstName
       lastName
       email
@@ -41,7 +41,7 @@ export const deleteUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     deleteUser(input: $input, condition: $condition) {
-      username
+      id
       firstName
       lastName
       email
@@ -58,7 +58,7 @@ export const createDevice = /* GraphQL */ `
     $condition: ModelDeviceConditionInput
   ) {
     createDevice(input: $input, condition: $condition) {
-      serialNumber
+      id
       password
       userList
       status
@@ -74,7 +74,7 @@ export const updateDevice = /* GraphQL */ `
     $condition: ModelDeviceConditionInput
   ) {
     updateDevice(input: $input, condition: $condition) {
-      serialNumber
+      id
       password
       userList
       status
@@ -90,7 +90,7 @@ export const deleteDevice = /* GraphQL */ `
     $condition: ModelDeviceConditionInput
   ) {
     deleteDevice(input: $input, condition: $condition) {
-      serialNumber
+      id
       password
       userList
       status

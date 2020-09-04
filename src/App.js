@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
-//import {createUser, updateUser, deleteUser, createDevice, updateDevice, deleteDevice} from './graphql/mutations';
+import { API, graphqlOperation, Auth, AWSKinesisFirehoseProvider } from 'aws-amplify';
 import * as mutations from './graphql/mutations';
-//import {getUser, listUser, getDevice, listDevice} from './graphql/queries';
 import * as queries from './graphql/queries';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-//import { queries } from '@testing-library/react';
+import AWS from 'aws-sdk';
+import {Paper, responsiveFontSizes} from '@material-ui/core';
+import { render } from '@testing-library/react';
+
+const documentClient = new AWS.DynamoDB.DocumentClient();
 
 const initialFormState = {sn: '', pass: ''}
 const initialUserState = {username: ''}
+
+
+
 
 function App() {
 
@@ -29,8 +34,7 @@ function App() {
   async function setUserData(data){
     userState.username = data.username;
     console.log('userstate username: ' + userState.username);
-    //var username = data.username;
-    //console.log(username);
+    //setUserState(userState => [data.username])
   }
 
   //device list
@@ -39,6 +43,8 @@ function App() {
   }, []);
 
   async function getUserDevices() {
+    const apiData = await API.graphql({ query: queries.listDevices });
+    setUserDevices(apiData.data.listDevices.items);
   }
 
   /*
@@ -63,8 +69,6 @@ function App() {
 
     if(apiData.data.getDevice.password === formData.pass)
     {
-
-      console.log('SN: ' + formData.sn + ' Added to user');
       addDeviceToUser();
       return;
     }
@@ -72,38 +76,71 @@ function App() {
       console.log('Invalid password');
     }
   }
-  /*
-  * Adds the Device serial number to User device list
-  * Adds the User username to Device users
-  */
- 
+
   async function addDeviceToUser(){
 
+    //Gets the user device list
+    const apiUserData = await API.graphql(graphqlOperation(queries.getUser, {id: userState.username}));
+    const userDeviceList = apiUserData.data.getUser.deviceList;
+    console.log('user device list: ' + userDeviceList);
+
+    //adds the new device to the user device list
     const updateDeviceList = {
-      //id: userState.username,
-      //input: 'rmoraes2',
-      username: 'rmoraes2',
-      firstName: 'testname'
-      //deviceList: [...deviceList, formData.sn]
-      //deviceList: [...deviceList, 'test']
+      id: userState.username,
+      deviceList: documentClient.createSet([...userDeviceList, formData.sn])
     };
-    console.log('updateDeviceList: ' + updateDeviceList.id + ' ' + updateDeviceList.firstname);
-    const apiData = await API.graphql(graphqlOperation(mutations.updateUser, {input: updateDeviceList}));
+    console.log('updateDeviceList: ' + updateDeviceList.id + ' ' + updateDeviceList.deviceList);
+
+    //adds user to device user list
+    addUserToDevice();
+
+    //checks if the user device list already contains the new device
+    if(userDeviceList.includes(formData.sn)){
+      console.log(userState.username + " already contains device " + formData.sn);
+    }
+    else{
+      console.log(formData.sn + ' Added to user');
+      const apiData = await API.graphql(graphqlOperation(mutations.updateUser, {input: updateDeviceList}));
+      
+    }
+    
   }
   
-/*
-  async function addDevice() {
-    if (!formData.sn || !formData.pass) return;
-    await API.graphql({ query: createNoteMutation, variables: { input: formData } });
-    setNotes([ ...notes, formData ]);
-    setFormData(initialFormState);
+  async function addUserToDevice() {
+    
+    //Gets the device user list
+    const apiDeviceData = await API.graphql(graphqlOperation(queries.getDevice, {id: formData.sn}));
+    const deviceUserList = apiDeviceData.data.getDevice.userList;
+    console.log('user device list: ' + deviceUserList);
+
+    //adds the new user to the device user list
+    const updateUserList = {
+      id: formData.sn,
+      userList: documentClient.createSet([...deviceUserList, userState.username])
+    };
+
+    //checks if device user list already contains new user
+    if(deviceUserList.includes(userState.username)){
+      console.log(formData.sn + "already contains user" + userState.username);
+    }
+    else{
+      console.log(userState.username + "added to user");
+      const apiData = await API.graphql(graphqlOperation(mutations.updateDevice, {input: updateUserList}));
+    }
+
   }
-*/
+
+  function refreshPage() {
+    //window.location.reload(false);
+
+  }
+  
+
 
   return (
     <div className="App">
 
-      <h1>Enter device 'Serial Number' and 'Password' to add device to account</h1>
+      <h1>DigiCloud App</h1>
 		  <p></p>
 		
       <input
@@ -120,6 +157,26 @@ function App() {
 		
 		  <button onClick={getDeviceButton}>Add Device</button>
 
+      <div className="deviceList">
+      {
+        userDevices.map(Device =>
+          (
+            <div key={Device.id}>
+              {
+                Device.userList.includes(userState.username) &&
+                  <Paper variant="outlined" elevation={2}>
+                    <div className="deviceCard">
+                      <div className="deviceSN">{Device.id}</div>
+                      <div className="deviceStatus">{Device.status}</div>
+                      <div className="deviceDueAt">{Device.dueAt}</div>
+                    </div>
+                  </Paper>
+                }
+                
+            </div>
+          )
+        )}
+      </div>
       <AmplifySignOut />
     </div>
   );
