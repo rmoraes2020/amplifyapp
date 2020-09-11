@@ -52,6 +52,7 @@ export const onCreateDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }
@@ -65,6 +66,7 @@ export const onUpdateDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }
@@ -78,6 +80,7 @@ export const onDeleteDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }

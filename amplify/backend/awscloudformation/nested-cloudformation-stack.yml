@@ -126,7 +126,41 @@
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": false,
 					"S3DeploymentBucket": "amplify-amplifyapp-dev-120954-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/620fd6b9f958e01619cc3ed850eb0ee64aff920b",
+					"S3DeploymentRootKey": "amplify-appsync-files/610574183e5a4c925e00592cf9ecf13f4d3974c2",
+					"env": "dev"
+				}
+			}
+		},
+		"storagedeviceImages": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"Parameters": {
+					"bucketName": "digiapp-bucket",
+					"authPolicyName": "s3_amplify_32d731be",
+					"unauthPolicyName": "s3_amplify_32d731be",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
+					"selectedAuthenticatedPermissions": "s3:GetObject,s3:ListBucket",
+					"s3PermissionsAuthenticatedPublic": "s3:GetObject",
+					"s3PublicPolicy": "Public_policy_7a58c169",
+					"s3PermissionsAuthenticatedUploads": "DISALLOW",
+					"s3UploadsPolicy": "Uploads_policy_7a58c169",
+					"s3PermissionsAuthenticatedProtected": "s3:GetObject",
+					"s3ProtectedPolicy": "Protected_policy_7a58c169",
+					"s3PermissionsAuthenticatedPrivate": "s3:GetObject",
+					"s3PrivatePolicy": "Private_policy_7a58c169",
+					"AuthenticatedAllowList": "ALLOW",
+					"s3ReadPolicy": "read_policy_7a58c169",
+					"s3PermissionsGuestPublic": "DISALLOW",
+					"s3PermissionsGuestUploads": "DISALLOW",
+					"GuestAllowList": "DISALLOW",
+					"triggerFunction": "NONE",
 					"env": "dev"
 				}
 			}

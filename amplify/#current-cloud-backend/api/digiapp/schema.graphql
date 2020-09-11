@@ -15,4 +15,5 @@ type Device @model{
 	status: String
 	createdAt: String
 	dueAt: String
+	model: String
 }

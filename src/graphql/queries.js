@@ -45,6 +45,7 @@ export const getDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }
@@ -63,6 +64,7 @@ export const listDevices = /* GraphQL */ `
         status
         createdAt
         dueAt
+        model
         updatedAt
       }
       nextToken

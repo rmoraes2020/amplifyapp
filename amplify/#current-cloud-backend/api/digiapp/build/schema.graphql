@@ -16,6 +16,7 @@ type Device {
   status: String
   createdAt: String
   dueAt: String
+  model: String
   updatedAt: AWSDateTime!
 }
 
@@ -201,6 +202,7 @@ input ModelDeviceFilterInput {
   status: ModelStringInput
   createdAt: ModelStringInput
   dueAt: ModelStringInput
+  model: ModelStringInput
   and: [ModelDeviceFilterInput]
   or: [ModelDeviceFilterInput]
   not: ModelDeviceFilterInput
@@ -213,6 +215,7 @@ input CreateDeviceInput {
   status: String
   createdAt: String
   dueAt: String
+  model: String
 }
 
 input UpdateDeviceInput {
@@ -222,6 +225,7 @@ input UpdateDeviceInput {
   status: String
   createdAt: String
   dueAt: String
+  model: String
 }
 
 input DeleteDeviceInput {
@@ -234,6 +238,7 @@ input ModelDeviceConditionInput {
   status: ModelStringInput
   createdAt: ModelStringInput
   dueAt: ModelStringInput
+  model: ModelStringInput
   and: [ModelDeviceConditionInput]
   or: [ModelDeviceConditionInput]
   not: ModelDeviceConditionInput

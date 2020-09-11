@@ -31,3 +31,12 @@
   justify-content: space-around;
   padding: 5px;
 }
+
+.flexbox-container{
+  display: flex;
+  text-align-last: left;
+}
+
+.deviceImage{
+  width: 40px;
+}

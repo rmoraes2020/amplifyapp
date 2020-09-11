@@ -64,6 +64,7 @@ export const createDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }
@@ -80,6 +81,7 @@ export const updateDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }
@@ -96,6 +98,7 @@ export const deleteDevice = /* GraphQL */ `
       status
       createdAt
       dueAt
+      model
       updatedAt
     }
   }

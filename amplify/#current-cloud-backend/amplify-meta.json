@@ -22,7 +22,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/auth/amplifyapp611acdb3-cloudformation-template.yml",
 				"logicalId": "authamplifyapp611acdb3"
 			},
-			"lastPushTimeStamp": "2020-09-01T16:23:25.668Z",
+			"lastPushTimeStamp": "2020-09-11T18:22:20.532Z",
 			"output": {
 				"AppClientSecret": "140spn2pm5489v966j0p2ui6v0cbgsqca5prmfcc1f6u7o69r28n",
 				"UserPoolId": "us-east-2_SrdQGHOjt",
@@ -58,8 +58,24 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apidigiapp"
 			},
-			"lastPushTimeStamp": "2020-09-01T16:23:27.772Z",
-			"lastPushDirHash": "epykLcO3h/zXzKBrpQIyuyQdWic="
+			"lastPushTimeStamp": "2020-09-11T18:22:22.430Z",
+			"lastPushDirHash": "6b7PpTPE2Fv6xSpHWbTPGqAHJPU="
+		}
+	},
+	"storage": {
+		"deviceImages": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyapp-dev-120954-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storagedeviceImages"
+			},
+			"lastPushTimeStamp": "2020-09-11T18:22:20.545Z",
+			"output": {
+				"BucketName": "digiapp-bucket120954-dev",
+				"Region": "us-east-2"
+			},
+			"lastPushDirHash": "dxGPUATbL4eBhYaqEOs6icm6Yig="
 		}
 	}
 }

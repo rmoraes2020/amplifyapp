@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { API, graphqlOperation, Auth, AWSKinesisFirehoseProvider } from 'aws-amplify';
+import { API, graphqlOperation, Auth, AWSKinesisFirehoseProvider, Storage} from 'aws-amplify';
 import * as mutations from './graphql/mutations';
 import * as queries from './graphql/queries';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
@@ -157,26 +157,41 @@ function App() {
 		
 		  <button onClick={getDeviceButton}>Add Device</button>
 
-      <div className="deviceList">
-      {
-        userDevices.map(Device =>
-          (
-            <div key={Device.id}>
-              {
-                Device.userList.includes(userState.username) &&
-                  <Paper variant="outlined" elevation={2}>
-                    <div className="deviceCard">
-                      <div className="deviceSN">{Device.id}</div>
-                      <div className="deviceStatus">{Device.status}</div>
-                      <div className="deviceDueAt">{Device.dueAt}</div>
-                    </div>
-                  </Paper>
-                }
-                
-            </div>
-          )
-        )}
+      <div class="flexbox-container">
+        <Paper variant="outlined" elevation={2}>
+          <div className="deviceCard">
+            <div className="deviceSN">SN</div>
+              <div className="deviceStatus">Status</div>
+              <div className="deviceDueAt">Due Date</div>
+          </div>
+        </Paper>
+
+        <div className="deviceList">
+        {
+          
+          userDevices.map(Device =>
+            (
+              <div key={Device.id}>
+                {
+                  Device.userList.includes(userState.username) &&
+                    <Paper variant="outlined" elevation={2}>
+                      <div className="deviceCard">
+                        <div className="deviceImage">
+                          <img src={'https://digiapp-bucket120954-dev.s3.us-east-2.amazonaws.com/'+ Device.model + '.png'}></img>
+                        </div>
+                        <div className="deviceSN">{Device.id}</div>
+                        <div className="deviceStatus">{Device.status}</div>
+                        <div className="deviceDueAt">{Device.dueAt}</div>
+                      </div>
+                    </Paper>
+                  }
+                  
+              </div>
+            )
+          )}
+        </div>
       </div>
+      
       <AmplifySignOut />
     </div>
   );
